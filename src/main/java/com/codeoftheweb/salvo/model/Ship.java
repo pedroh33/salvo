@@ -15,11 +15,13 @@ public class Ship {
     @GenericGenerator(name  = "native", strategy = "native")
     private long  id;
     private String type;
-    private GamePlayer gamePlayer;
+
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "playerID")
+    @JoinColumn(name="GamePlayerID")
+    private GamePlayer gamePlayer;
+
 
 
     @ElementCollection
@@ -86,6 +88,8 @@ public class Ship {
     public void setLocation(List<String> location) {
         this.locations = location;
     }
+
+
 }
 
 
