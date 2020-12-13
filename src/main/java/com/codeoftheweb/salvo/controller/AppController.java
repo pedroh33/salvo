@@ -48,7 +48,7 @@ public class AppController {
     @RequestMapping("/game/{idGame}/players")
     public ResponseEntity<Map<String, Object>>joinGame(@PathVariable long idGame, Authentication authentication){
         if(Util.isGuest(authentication)){
-            return new ResponseEntity<>(Util.makeMap("ERROR", "Is guest"), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(Util.makeMap("error", "Is guest"), HttpStatus.UNAUTHORIZED);
         }
 
         Player player = playerRepository.findByEmail(authentication.getName());
@@ -56,7 +56,7 @@ public class AppController {
         Game gameToJoin = gameRepository.getOne(idGame);
 
         if (gameToJoin==null){
-            return new ResponseEntity<>(Util.makeMap("ERROR", "No such game"), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(Util.makeMap("error", "No such game"), HttpStatus.FORBIDDEN);
         }
 
         long gamePlayersCounts =gameToJoin.getGamePlayers().size();

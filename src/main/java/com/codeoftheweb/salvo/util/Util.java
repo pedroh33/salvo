@@ -1,5 +1,6 @@
 package com.codeoftheweb.salvo.util;
 
+import com.codeoftheweb.salvo.model.GamePlayer;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
@@ -18,5 +19,16 @@ public class Util {
         return authentication == null || authentication instanceof AnonymousAuthenticationToken;
     }
 
+
+
+    public static GamePlayer getOpponent(GamePlayer myself){
+        GamePlayer opponent= new GamePlayer();
+        for( GamePlayer g :myself.getGame().getGamePlayers()){
+            if(g.getId()!=myself.getId()){
+                opponent=g;
+            }
+        }
+        return opponent;
+    }
 
 }

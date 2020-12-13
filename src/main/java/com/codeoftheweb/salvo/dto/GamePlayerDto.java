@@ -4,10 +4,7 @@ import com.codeoftheweb.salvo.model.GamePlayer;
 import com.codeoftheweb.salvo.model.Player;
 import com.codeoftheweb.salvo.model.Salvo;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GamePlayerDto {
@@ -33,11 +30,15 @@ public class GamePlayerDto {
 
     public Map<String,  Object> makeGameViewDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();
+        Map<String, Object> hits = new LinkedHashMap<>();
         Set<GamePlayer> gamePlayers = gamePlayer.getGame().getGamePlayers();
         List<Salvo> salvoes = gamePlayers
                 .stream()
                 .flatMap(gp -> gp.getSalvos().stream())
                 .collect(Collectors.toList());
+
+        hits.put("self", new ArrayList<>());
+        hits.put("opponent", new ArrayList<>());
         dto.put("id", this.gamePlayer.getGame().getId());
         dto.put("created", this.gamePlayer.getGame().getCreation_date());
         dto.put("gamePlayers", this.gamePlayer.getGame().getGamePlayers()
@@ -59,6 +60,9 @@ public class GamePlayerDto {
                     return salvoDTO.makeSalvoDTO();
                 }).collect(Collectors.toList()));
 
+
+        dto.put("hits", hits);
+        dto.put("gameState", "PLAY");
         return  dto;
 
     }

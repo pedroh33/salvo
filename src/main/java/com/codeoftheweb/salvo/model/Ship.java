@@ -25,7 +25,7 @@ public class Ship {
 
 
     @ElementCollection
-    @Column(name= "Location")
+    @Column(name= "locations")
     private List<String> locations = new ArrayList<>();
 
     public Ship() {
@@ -47,6 +47,7 @@ public class Ship {
 
     public void setGamePlayer(GamePlayer gamePlayer) {
         this.gamePlayer = gamePlayer;
+
     }
 
     public List<String> getLocations() {
