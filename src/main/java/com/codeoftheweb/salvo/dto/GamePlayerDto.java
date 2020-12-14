@@ -1,8 +1,8 @@
 package com.codeoftheweb.salvo.dto;
 
 import com.codeoftheweb.salvo.model.GamePlayer;
-import com.codeoftheweb.salvo.model.Player;
 import com.codeoftheweb.salvo.model.Salvo;
+import com.codeoftheweb.salvo.util.Util;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -31,14 +31,15 @@ public class GamePlayerDto {
     public Map<String,  Object> makeGameViewDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();
         Map<String, Object> hits = new LinkedHashMap<>();
+        HitsDto hitsDto=new HitsDto();
         Set<GamePlayer> gamePlayers = gamePlayer.getGame().getGamePlayers();
         List<Salvo> salvoes = gamePlayers
                 .stream()
-                .flatMap(gp -> gp.getSalvos().stream())
+                .flatMap(gp -> gp.getSalvoes().stream())
                 .collect(Collectors.toList());
 
-        hits.put("self", new ArrayList<>());
-        hits.put("opponent", new ArrayList<>());
+        hits.put("self", hitsDto.makeHitsDTO(gamePlayer));
+        hits.put("opponent", hitsDto.makeHitsDTO(Util.getOpponent(gamePlayer)));
         dto.put("id", this.gamePlayer.getGame().getId());
         dto.put("created", this.gamePlayer.getGame().getCreation_date());
         dto.put("gamePlayers", this.gamePlayer.getGame().getGamePlayers()

@@ -4,7 +4,9 @@ import com.codeoftheweb.salvo.model.GamePlayer;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Util {
@@ -29,6 +31,10 @@ public class Util {
             }
         }
         return opponent;
+    }
+
+    public static List<String> getLocatiosByType(String type, GamePlayer self){
+        return  self.getShips().size()  ==  0 ? new ArrayList<>() : self.getShips().stream().filter(ship -> ship.getType().equals(type)).findFirst().get().getLocations();
     }
 
 }

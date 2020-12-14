@@ -37,7 +37,7 @@ public class SalvoController {
             GamePlayer gp= gamePlayerRepository.getOne(gamePlayerID);
             if(p1.getId()==gp.getPlayer().getId()){
                 GamePlayer opponent = Util.getOpponent(gp);
-                if(opponent.getSalvos().size() >= gp.getSalvos().size()){
+                if(opponent.getSalvoes().size() >= gp.getSalvoes().size()){
                     salvoRepository.save(salvo);
                     return new ResponseEntity<>(Util.makeMap("OK", "ok"), HttpStatus.CREATED);
                 }else{

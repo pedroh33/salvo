@@ -69,7 +69,7 @@ public class AppController {
             return new ResponseEntity<>(Util.makeMap("gpid",gamePlayer.getId()), HttpStatus.CREATED);
         }else{
 
-            return new ResponseEntity<>(Util.makeMap("ACCESS DENIED", "GAME IS FULL!"), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(Util.makeMap("error", "GAME IS FULL!"), HttpStatus.FORBIDDEN);
         }
     }
 

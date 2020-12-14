@@ -79,6 +79,12 @@ public class SalvoApplication {
 			GamePlayer GP13 = new GamePlayer(D, G7); GamePlayer GP14 = new GamePlayer();
 			GamePlayer GP15 = new GamePlayer(C, G8); GamePlayer GP16 = new GamePlayer(D, G8);
 
+
+
+
+
+
+
 			/*
 			Ship SA = new Ship("Acorazado", GP1, Arrays.asList("A1", "A2", "A3"));
 			Ship SB = new Ship("Mercante", GP1, Arrays.asList("A2", "D2"));
